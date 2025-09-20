@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evil Russian Pushup Program</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        input[type="number"] {
+            width: 60%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        pre {
+            text-align: left;
+            background-color: #eee;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Evil Russian Pushup Program</h1>
+
+        <div class="info">
+            <h3>Important Information</h3>
+            <p style="text-align: left;"">- The evil Russian program was invented to increase the amount of pushups you can do by up to 170%.</p>
+            <p style="text-align: left;">- It involves doing the maximum amount of pushups until exhaustion, and doing a percentage of that amount every day for two weeks with various time intervals in between.</p>
+            <p style="text-align: left;"><strong>WARNING:</strong> You will need to pause all upper body workouts until the end of the fortnight. </p>
+            <p style="text-align: left;">- You should stop an hour before sleeping to sleep comfortably.</p>
+        </div>
+
+        <div id="step1">
+            <p>Enter the maximum pushups you can do</p>
+            <input type="number" id="week1Input" placeholder="Enter max pushups for week 1">
+            <br>
+            <button onclick="submitWeek1()">Submit</button>
+        </div>
+
+        <div id="step2" style="display:none;">
+            <p>Halfway there! Input your second max:</p>
+            <input type="number" id="week2Input" placeholder="Enter max pushups for week 2">
+            <br>
+            <button onclick="submitWeek2()">Submit</button>
+        </div>
+
+        <div id="step3" style="display:none;">
+            <p>You're done! Enter you final pushup count</p>
+            <input type="number" id="newMaxInput" placeholder="Enter new max pushups">
+            <br>
+            <button onclick="submitNewMax()">Submit</button>
+        </div>
+
+        <pre id="output"></pre>
+    </div>
+
+    <script>
+        let week1Max, week2Max;
+
+        function submitWeek1() {
+            week1Max = parseInt(document.getElementById("week1Input").value);
+            if (isNaN(week1Max) || week1Max <= 0) {
+                alert("Please enter a valid number for Week 1!");
+                return;
+            }
+
+            let week1Schedule = "\nWeek 1 Pushup Schedule:\n";
+            week1Schedule += `Day 1: ${Math.round(week1Max * 0.3)} pushups every 60 mins\n`;
+            week1Schedule += `Day 2: ${Math.round(week1Max * 0.5)} pushups every 60 mins\n`;
+            week1Schedule += `Day 3: ${Math.round(week1Max * 0.6)} pushups every 45 mins\n`;
+            week1Schedule += `Day 4: ${Math.round(week1Max * 0.25)} pushups every 60 mins\n`;
+            week1Schedule += `Day 5: ${Math.round(week1Max * 0.45)} pushups every 30 mins\n`;
+            week1Schedule += `Day 6: ${Math.round(week1Max * 0.4)} pushups every 60 mins\n`;
+            week1Schedule += `Day 7: ${Math.round(week1Max * 0.2)} pushups every 90 mins\n`;
+
+            document.getElementById("output").textContent = week1Schedule;
+
+            document.getElementById("step1").style.display = "none";
+            document.getElementById("step2").style.display = "block";
+        }
+
+        function submitWeek2() {
+            week2Max = parseInt(document.getElementById("week2Input").value);
+            if (isNaN(week2Max) || week2Max <= 0) {
+                alert("Please enter a valid number for Week 2!");
+                return;
+            }
+
+            let week2Schedule = "\nWeek 2 Pushup Schedule:\n";
+            week2Schedule += `Day 8: ${Math.round(week2Max * 0.35)} pushups every 45 mins\n`;
+            week2Schedule += `Day 9: ${Math.round(week2Max * 0.55)} pushups every 20 mins\n`;
+            week2Schedule += `Day 10: ${Math.round(week2Max * 0.3)} pushups every 15 mins\n`;
+            week2Schedule += `Day 11: ${Math.round(week2Max * 0.65)} pushups every 60 mins\n`;
+            week2Schedule += `Day 12: ${Math.round(week2Max * 0.35)} pushups every 45 mins\n`;
+            week2Schedule += `Day 13: ${Math.round(week2Max * 0.45)} pushups every 60 mins\n`;
+            week2Schedule += `Day 14: ${Math.round(week2Max * 0.25)} pushups every 120 mins\n`;
+
+            document.getElementById("output").textContent += week2Schedule;
+
+            document.getElementById("step2").style.display = "none";
+            document.getElementById("step3").style.display = "block";
+        }
+
+        function submitNewMax() {
+            const newMax = parseInt(document.getElementById("newMaxInput").value);
+            if (isNaN(newMax) || newMax <= 0) {
+                alert("Please enter a valid number for the new max!");
+                return;
+            }
+
+            const change = newMax - week1Max;
+            const percentage = (change / week1Max) * 100;
+
+            let result = "\nProgram Complete!\n";
+            if (percentage >= 170) {
+                result += `Congratulations! You have improved by ${percentage.toFixed(2)}%`;
+            } else {
+                result += "Keep pushing!";
+            }
+
+            document.getElementById("output").textContent += result;
+            document.getElementById("step3").style.display = "none";
+        }
+    </script>
+</body>
+</html>
